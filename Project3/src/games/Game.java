@@ -1,8 +1,9 @@
 package games;
+
 import java.util.Scanner;
 
 public class Game implements Challenger {
-	
+
 	Scanner sc = new Scanner(System.in);
 	// Instance attributes
 	protected int combination_size;
@@ -23,7 +24,8 @@ public class Game implements Challenger {
 	}
 
 	// Methods
-	public int[] randomCombination() { // Creation of the combination the player/IA has to find when the object is created
+	public int[] randomCombination() { // Creation of the combination the player/IA has to find when the object is
+										// created
 		int combination[] = new int[combination_size];
 		for (int k = 0; k < combination_size; k++) {
 			combination[k] = (int) (Math.random() * (double) (10 - 0)) + 0;
@@ -42,21 +44,30 @@ public class Game implements Challenger {
 		System.out.print("]");
 	}
 
-	public int[] tryy() {
+	public int[] tryy() throws CombinationException {
+
 		System.out.print("Proposition : ");
 		int proposition = sc.nextInt();
-		int [] proposition_tab = new int[combination_size];
-		for (int k=0; k<combination_size;k++) {
-			proposition_tab[combination_size-1-k] = (int) (proposition % Math.pow(10, (k+1))/Math.pow(10, k)); 
+
+		if (((int) Math.log10(proposition) + 1) != combination_size) {// if the user enter more or less numbers that he's supposed to
+			throw new CombinationException(combination_size);
+		} 
+		else {
+			int[] proposition_tab = new int[combination_size];
+			for (int k = 0; k < combination_size; k++) {
+				proposition_tab[combination_size - 1- k] = (int) (proposition % Math.pow(10, (k + 1)) / Math.pow(10, k));
+			}
+			
+			return proposition_tab;
 		}
-		return proposition_tab;
+
 	}
-	
+
 	public void response() {
 		System.out.print(" -> Réponse : ");
 	}
-	
+
 	public void tryy(int[] tab) {
-		
+
 	}
 }
