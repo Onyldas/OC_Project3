@@ -2,7 +2,7 @@ package games;
 
 import java.util.Scanner;
 
-public class Game implements Challenger {
+public abstract class Game implements Challenger {
 
 	Scanner sc = new Scanner(System.in);
 	// Instance attributes
@@ -23,12 +23,11 @@ public class Game implements Challenger {
 		this.combination = randomCombination();
 	}
 
-	// Methods
-	public int[] randomCombination() { // Creation of the combination the player/IA has to find when the object is
-										// created
+	// ------------------------------Methods-----------------------------------
+	public int[] randomCombination() { // Creation of the combination the player/IA has to find when the object is created
 		int combination[] = new int[combination_size];
 		for (int k = 0; k < combination_size; k++) {
-			combination[k] = (int) (Math.random() * (double) (10 - 0)) + 0;
+			combination[k] = (int) (Math.random() * (double) (10 - 1)) + 1;
 		}
 		return combination;
 	}
@@ -45,7 +44,6 @@ public class Game implements Challenger {
 	}
 
 	public int[] tryy() throws CombinationException {
-
 		System.out.print("Proposition : ");
 		int proposition = sc.nextInt();
 
@@ -62,12 +60,16 @@ public class Game implements Challenger {
 		}
 
 	}
-
+	
+	
+	
+	
+	
+	
+	
+	
 	public void response() {
 		System.out.print(" -> Réponse : ");
 	}
 
-	public void tryy(int[] tab) {
-
-	}
 }
