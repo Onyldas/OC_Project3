@@ -1,0 +1,4 @@
+2017-11-28 14:28:46 Main [INFO] msg d'information
+2017-11-28 14:28:46 Main [WARN] msg d'avertissement
+2017-11-28 14:28:46 Main [ERROR] msg d'erreur
+2017-11-28 14:28:46 Main [FATAL] msg d'erreur fatale
