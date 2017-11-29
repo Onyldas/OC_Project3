@@ -1,5 +1,8 @@
 package games;
 
+import java.util.Arrays;
+import java.util.InputMismatchException;
+
 public class PoM extends Game {
 
 	// Instance Attributes
@@ -28,6 +31,29 @@ public class PoM extends Game {
 			}
 		}
 	}
+	
+	public void challenger(){
+		int temp[]= new int[this.combination_size];
+		int count = 0;
+		int nb_tryy = 7;
+		while (count < nb_tryy && !(Arrays.equals(this.combination,temp))) {
+			try {
+				temp = this.tryy();
+				this.response(temp);
+				count++;
+			} catch (CombinationException e) {
+			} catch (InputMismatchException e2) { logger.fatal("Not an integer !");
+			} finally {
+				System.out.println();
+			}
+		}
+		if (Arrays.equals(this.combination,temp))
+		{
+			System.out.println("\nYou win !");
+		}
+		else { System.out.println("\nGame Over !");}
+	}
+	
 	
 	public void ia() {
 		int [][] memory = new int [nb_try][combination_size];

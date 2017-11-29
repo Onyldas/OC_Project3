@@ -2,8 +2,13 @@ package games;
 
 import java.util.Scanner;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public abstract class Game implements Challenger {
 
+	protected static Logger logger = LogManager.getLogger();
+	
 	Scanner sc = new Scanner(System.in);
 	// Instance attributes
 	protected int combination_size;
@@ -15,12 +20,14 @@ public abstract class Game implements Challenger {
 		this.combination_size = 4;
 		this.nb_try = 20;
 		this.combination = randomCombination();
+		logger.info("Default game built. " + nb_try +" try.");
 	}
 
 	public Game(int combination_size, int nb_try) {
 		this.combination_size = combination_size;
 		this.nb_try = nb_try;
 		this.combination = randomCombination();
+		logger.info("Game built. " + nb_try +" try.");
 	}
 
 	// ------------------------------Methods-----------------------------------
@@ -48,8 +55,10 @@ public abstract class Game implements Challenger {
 		int proposition = sc.nextInt();
 
 		if (((int) Math.log10(proposition) + 1) != combination_size) {// if the user enter more or less numbers that he's supposed to
+			logger.error("The user's combination doesn't respect the combination size" + combination_size);
 			throw new CombinationException(combination_size);
 		} 
+		
 		else {
 			int[] proposition_tab = new int[combination_size];
 			for (int k = 0; k < combination_size; k++) {
@@ -60,9 +69,6 @@ public abstract class Game implements Challenger {
 		}
 
 	}
-	
-	
-	
 	
 	
 	

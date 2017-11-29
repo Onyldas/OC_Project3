@@ -10,46 +10,36 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		/*Scanner sc = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		System.out.println("Choose your game : \n1 - Plus or Minus\n2 - Mastermind\n");
 		int choice = sc.nextInt();
+		
 		if (choice == 1) {
+			logger.info("Plus or Minus game chosen.\n");
 			PoM game = new PoM();
-			int temp[]= new int[game.combination_size];
-			int count = 0;
-			int nb_tryy = 7;
-			while (count < nb_tryy && !(Arrays.equals(game.combination,temp))) {
-				try {
-					temp = game.tryy();
-					game.response(temp);
-					count++;
-				} catch (CombinationException e) {
-				} catch (InputMismatchException e2) {e2.getMessage();count=11;
-				} finally {
-					System.out.println();
-				}
-			}
-			if (Arrays.equals(game.combination,temp))
-			{
-				System.out.println("\nYou win !");
-			}
-			else { System.out.println("Game Over !");}
 			
-			PoM gameIA = new PoM(4,6);
-			Game.printTab(gameIA.combination);
-			System.out.println();
-			gameIA.ia();
+			System.out.println("Choose your mode : \n1 - Challenger\n2 - Defender\n3 - Duel\n");
+			choice = sc.nextInt();
+			
+			if(choice == 1){
+				logger.info("Challenger mode chosen.\n");
+				game.challenger();
+			}
+			else if(choice == 2) {
+				logger.info("Defender mode chosen.\n");
+				game.ia();
+			}
+			else if(choice == 3) {
+				logger.info("Duel mode chosen.\n");
+			}
+			
 		}
 		
 		else {
 			
-		}*/
-		logger.debug("msg de debogage");
-	    logger.info("msg d'information");
-	    logger.warn("msg d'avertissement");
-	    logger.error("msg d'erreur");
-	    logger.fatal("msg d'erreur fatale");  
+		} 
 		
+	    sc.close();
 	}
 	
 }
