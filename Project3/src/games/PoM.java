@@ -35,11 +35,11 @@ public class PoM extends Game {
 	public void challenger(){
 		int temp[]= new int[this.combination_size];
 		int count = 0;
-		int nb_tryy = 7;
-		while (count < nb_tryy && !(Arrays.equals(this.combination,temp))) {
+		while (count < nb_try && !(Arrays.equals(this.combination,temp))) {
 			try {
-				temp = this.tryy();
-				this.response(temp);
+				System.out.print("Proposition : ");
+				temp = tryy();
+				response(temp);
 				count++;
 			} catch (CombinationException e) {
 			} catch (InputMismatchException e2) { logger.fatal("Not an integer !");
@@ -47,17 +47,15 @@ public class PoM extends Game {
 				System.out.println();
 			}
 		}
-		if (Arrays.equals(this.combination,temp))
-		{
-			System.out.println("\nYou win !");
-		}
-		else { System.out.println("\nGame Over !");}
+		if (Arrays.equals(this.combination,temp)) { System.out.println("\nYou win !"); }
+		
+		else { System.out.println("\nGame Over !"); }
 	}
 	
 	
-	public void ia() {
+	public int[][] ia(int combination[]) {// using dichotomy method
 		int [][] memory = new int [nb_try][combination_size];
-		for (int k = 0; k < combination_size; k++) {
+		for (int k = 0; k < combination_size; k++) {// IA begin with 5555... combination
 			memory[0][k] = 5;
 		}
 		for (int i = 1; i < nb_try; i++) {
@@ -88,11 +86,58 @@ public class PoM extends Game {
 				}
 			}
 		}
-		
-		for (int tryy[] : memory)
-		{
-			printTab(tryy);
-			System.out.println();
+		return memory;
+	}
+	
+	public void defender() {
+		try {
+			System.out.println("Choose the combination [" + this.combination_size + "] the IA has to find : ");
+			int [] IaCombi = this.tryy();
+			SetCombination(IaCombi);
+			int[][] memory = ia(IaCombi);
+			int k = -1 ;
+			do {
+				k++;
+				printTab(memory[k]);
+				System.out.println();
+			} while (!(Arrays.equals(this.combination,memory[k])) && k<nb_try);
+			
+			if (Arrays.equals(this.combination,memory[k])) { System.out.println("IA win !"); }
+			else { System.out.println("IA loose !"); }
+			
+		} catch (CombinationException e) {
+			logger.error(e,e);
 		}
 	}
+	
+	
+	public void duel() throws CombinationException {
+		boolean YourTurn = true;
+		int [] temp = null;
+		int count = 0;
+		System.out.println("Choose the combination [" + this.combination_size + "] the IA has to find : ");
+		int [] IaCombi = tryy();
+		int[][] memory = ia(IaCombi);
+		
+		while ((count < nb_try && !(Arrays.equals(this.combination,temp))) || (count < nb_try && !(Arrays.equals(IaCombi,memory[count])))) {
+			if (YourTurn) {
+				System.out.print("Proposition : ");
+				temp = tryy();
+				response(temp);
+				System.out.println();
+				YourTurn = false;
+			}
+			else {
+				System.out.print("------------------- AI propose : ");
+				printTab(memory[count]);
+				System.out.println();
+				YourTurn = true;
+				count++;
+			}
+		}
+		if (Arrays.equals(this.combination,temp)) { System.out.println("\nYou win !"); }
+		else if (Arrays.equals(IaCombi,memory[count])) { System.out.println("\nIA win !"); }
+		else { System.out.println("\nYou both lose."); }
+	}
+	
 }

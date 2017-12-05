@@ -29,6 +29,29 @@ public abstract class Game implements Challenger {
 		this.combination = randomCombination();
 		logger.info("Game built. " + nb_try +" try.");
 	}
+	
+	//-------------------------------Getters-----------------------------------
+	public int GetCombination_size() {
+		return this.combination_size;
+	}
+	public int GetNb_try() {
+		return this.nb_try;
+	}
+	public int[] GetCombination() {
+		return this.combination;
+	}
+	
+	//-------------------------------Setters-----------------------------------
+	public void SetCombination_size(int combi_size) {
+		this.combination_size = combi_size;
+	}
+	public void SetNb_try(int _nb_try) {
+		this.nb_try = _nb_try;
+	}
+	public void SetCombination(int[] combi) {
+		this.combination = combi;
+	}
+	
 
 	// ------------------------------Methods-----------------------------------
 	public int[] randomCombination() { // Creation of the combination the player/IA has to find when the object is created
@@ -51,7 +74,6 @@ public abstract class Game implements Challenger {
 	}
 
 	public int[] tryy() throws CombinationException {
-		System.out.print("Proposition : ");
 		int proposition = sc.nextInt();
 
 		if (((int) Math.log10(proposition) + 1) != combination_size) {// if the user enter more or less numbers that he's supposed to
@@ -75,7 +97,7 @@ public abstract class Game implements Challenger {
 	
 	
 	public void response() {
-		System.out.print(" -> Réponse : ");
+		System.out.print(" -> Response : ");
 	}
 
 }

@@ -15,3 +15,75 @@ java.lang.NullPointerException: null
 	at java.io.FileInputStream.<init>(Unknown Source) ~[?:1.8.0_111]
 	at games.Main.main(Main.java:52) [bin/:?]
 2017-12-05 00:51:06 Game [INFO] Game built. 7 try.
+2017-12-05 01:16:16 Game [INFO] Game built. 7 try.
+2017-12-05 01:16:18 Main [INFO] Plus or Minus game chosen.
+
+2017-12-05 01:16:20 Main [INFO] Defender mode chosen.
+
+2017-12-05 01:42:03 Game [INFO] Game built. 7 try.
+2017-12-05 01:42:04 Main [INFO] Plus or Minus game chosen.
+
+2017-12-05 01:42:06 Main [INFO] Defender mode chosen.
+
+2017-12-05 01:42:58 Game [INFO] Game built. 7 try.
+2017-12-05 01:43:13 Game [INFO] Game built. 7 try.
+2017-12-05 01:43:15 Main [INFO] Plus or Minus game chosen.
+
+2017-12-05 01:43:17 Main [INFO] Defender mode chosen.
+
+2017-12-05 01:43:21 Main [ERROR] java.lang.ArrayIndexOutOfBoundsException: 7
+java.lang.ArrayIndexOutOfBoundsException: 7
+	at games.PoM.defender(PoM.java:101) ~[bin/:?]
+	at games.Main.play(Main.java:30) ~[bin/:?]
+	at games.Main.main(Main.java:60) [bin/:?]
+2017-12-05 01:45:08 Game [INFO] Game built. 7 try.
+2017-12-05 01:45:10 Main [INFO] Plus or Minus game chosen.
+
+2017-12-05 01:45:13 Main [INFO] Defender mode chosen.
+
+2017-12-05 01:46:43 Game [INFO] Game built. 7 try.
+2017-12-05 01:46:45 Main [INFO] Plus or Minus game chosen.
+
+2017-12-05 01:46:46 Main [INFO] Defender mode chosen.
+
+2017-12-05 01:50:31 Game [INFO] Game built. 7 try.
+2017-12-05 01:50:32 Main [INFO] Plus or Minus game chosen.
+
+2017-12-05 01:50:33 Main [INFO] Defender mode chosen.
+
+2017-12-05 02:26:36 Game [INFO] Game built. 7 try.
+2017-12-05 02:26:37 Main [INFO] Plus or Minus game chosen.
+
+2017-12-05 02:26:38 Main [INFO] Challenger mode chosen.
+
+2017-12-05 02:33:41 Game [INFO] Game built. 7 try.
+2017-12-05 02:33:42 Main [INFO] Plus or Minus game chosen.
+
+2017-12-05 02:33:45 Main [INFO] Defender mode chosen.
+
+2017-12-05 02:45:50 Game [INFO] Game built. 7 try.
+2017-12-05 02:45:51 Main [INFO] Plus or Minus game chosen.
+
+2017-12-05 02:45:52 Main [INFO] Defender mode chosen.
+2017-12-05 03:05:58 Game [INFO] Game built. 7 try.
+2017-12-05 03:05:59 Main [INFO] Plus or Minus game chosen.
+
+2017-12-05 03:06:01 Main [INFO] Duel mode chosen.
+2017-12-05 03:06:38 Main [ERROR] java.lang.ArrayIndexOutOfBoundsException: 7
+java.lang.ArrayIndexOutOfBoundsException: 7
+	at games.PoM.duel(PoM.java:136) ~[bin/:?]
+	at games.Main.play(Main.java:34) ~[bin/:?]
+	at games.Main.main(Main.java:61) [bin/:?]
+2017-12-05 03:11:51 Game [INFO] Game built. 7 try.
+2017-12-05 03:11:53 Main [INFO] Plus or Minus game chosen.
+
+2017-12-05 03:11:54 Main [INFO] Duel mode chosen.
+2017-12-05 03:15:38 Main [ERROR] java.lang.ArrayIndexOutOfBoundsException: 7
+java.lang.ArrayIndexOutOfBoundsException: 7
+	at games.PoM.duel(PoM.java:122) ~[bin/:?]
+	at games.Main.play(Main.java:34) ~[bin/:?]
+	at games.Main.main(Main.java:61) [bin/:?]
+2017-12-05 03:17:02 Game [INFO] Game built. 7 try.
+2017-12-05 03:17:04 Main [INFO] Plus or Minus game chosen.
+
+2017-12-05 03:17:04 Main [INFO] Duel mode chosen.

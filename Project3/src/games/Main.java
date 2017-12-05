@@ -1,6 +1,5 @@
 package games;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.*;
@@ -11,7 +10,7 @@ public class Main {
 	
 	private static Logger logger = LogManager.getLogger();
 	
-	public static void play(Game game) {
+	public static void play(Game game) throws CombinationException {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Choose your game : \n1 - Plus or Minus\n2 - Mastermind\n");
 		int choice = sc.nextInt();
@@ -19,19 +18,20 @@ public class Main {
 		if (choice == 1) {
 			logger.info("Plus or Minus game chosen.\n");
 			
-			System.out.println("Choose your mode : \n1 - Challenger\n2 - Defender\n3 - Duel\n");
+			System.out.println("Choose your mode : \n1 - Challenger\n2 - Defender\n3 - Duel");
 			choice = sc.nextInt();
 			
 			if(choice == 1){
-				logger.info("Challenger mode chosen.\n");
+				logger.info("Challenger mode chosen.");
 				((PoM) game).challenger();
 			}
 			else if(choice == 2) {
-				logger.info("Defender mode chosen.\n");
-				((PoM) game).ia();
+				logger.info("Defender mode chosen.");
+				((PoM) game).defender();
 			}
 			else if(choice == 3) {
-				logger.info("Duel mode chosen.\n");
+				logger.info("Duel mode chosen.");
+				((PoM) game).duel();
 			}
 			
 			
