@@ -1,0 +1,8 @@
+2017-12-04 17:20:35 Main [ERROR] java.lang.NullPointerException
+java.lang.NullPointerException: null
+	at java.io.FileInputStream.<init>(Unknown Source) ~[?:1.8.0_111]
+	at games.Main.main(Main.java:52) [bin/:?]
+2017-12-04 17:21:28 Main [ERROR] java.lang.NullPointerException
+java.lang.NullPointerException: null
+	at java.io.FileInputStream.<init>(Unknown Source) ~[?:1.8.0_111]
+	at games.Main.main(Main.java:52) [bin/:?]
