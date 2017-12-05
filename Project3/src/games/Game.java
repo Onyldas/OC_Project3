@@ -5,7 +5,7 @@ import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public abstract class Game implements Challenger {
+public abstract class Game {
 
 	protected static Logger logger = LogManager.getLogger();
 	

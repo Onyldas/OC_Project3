@@ -34,12 +34,16 @@ public class Main {
 				((PoM) game).duel();
 			}
 			
+			play(game);
+		}
+		
+		else if(choice == 2){
 			
 		}
 		
 		else {
 			
-		} 
+		}
 		
 	    sc.close();
 	}

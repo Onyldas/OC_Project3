@@ -119,7 +119,7 @@ public class PoM extends Game {
 		int [] IaCombi = tryy();
 		int[][] memory = ia(IaCombi);
 		
-		while ((count < nb_try && !(Arrays.equals(this.combination,temp))) || (count < nb_try && !(Arrays.equals(IaCombi,memory[count])))) {
+		while ((count < nb_try) && !(Arrays.equals(this.combination,temp)) && !(Arrays.equals(IaCombi,memory[count]))) {
 			if (YourTurn) {
 				System.out.print("Proposition : ");
 				temp = tryy();

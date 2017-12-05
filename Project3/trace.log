@@ -87,3 +87,40 @@ java.lang.ArrayIndexOutOfBoundsException: 7
 2017-12-05 03:17:04 Main [INFO] Plus or Minus game chosen.
 
 2017-12-05 03:17:04 Main [INFO] Duel mode chosen.
+2017-12-05 03:22:48 Game [INFO] Game built. 7 try.
+2017-12-05 03:22:50 Main [INFO] Plus or Minus game chosen.
+
+2017-12-05 03:22:51 Main [INFO] Duel mode chosen.
+2017-12-05 03:23:11 Game [ERROR] The user's combination doesn't respect the combination size4
+2017-12-05 03:23:11 Main [ERROR] games.CombinationException
+games.CombinationException: null
+	at games.Game.tryy(Game.java:81) ~[bin/:?]
+	at games.PoM.duel(PoM.java:125) ~[bin/:?]
+	at games.Main.play(Main.java:34) ~[bin/:?]
+	at games.Main.main(Main.java:61) [bin/:?]
+2017-12-05 03:27:34 Game [INFO] Game built. 7 try.
+2017-12-05 03:27:36 Main [INFO] Plus or Minus game chosen.
+
+2017-12-05 03:27:37 Main [INFO] Duel mode chosen.
+2017-12-05 03:27:57 Main [ERROR] java.lang.ArrayIndexOutOfBoundsException: 7
+java.lang.ArrayIndexOutOfBoundsException: 7
+	at games.PoM.duel(PoM.java:140) ~[bin/:?]
+	at games.Main.play(Main.java:34) ~[bin/:?]
+	at games.Main.main(Main.java:61) [bin/:?]
+2017-12-05 13:51:15 Game [INFO] Game built. 7 try.
+2017-12-05 13:51:17 Main [INFO] Plus or Minus game chosen.
+
+2017-12-05 13:51:19 Main [INFO] Duel mode chosen.
+2017-12-05 13:52:12 Main [ERROR] java.lang.ArrayIndexOutOfBoundsException: 7
+java.lang.ArrayIndexOutOfBoundsException: 7
+	at games.PoM.duel(PoM.java:132) ~[bin/:?]
+	at games.Main.play(Main.java:34) ~[bin/:?]
+	at games.Main.main(Main.java:61) [bin/:?]
+2017-12-05 13:53:27 Game [INFO] Game built. 7 try.
+2017-12-05 13:53:28 Main [INFO] Plus or Minus game chosen.
+
+2017-12-05 13:53:29 Main [INFO] Duel mode chosen.
+2017-12-05 13:53:56 Game [INFO] Game built. 7 try.
+2017-12-05 13:54:11 Main [INFO] Plus or Minus game chosen.
+
+2017-12-05 13:54:12 Main [INFO] Duel mode chosen.
