@@ -20,8 +20,8 @@ public abstract class Game {
 
 	// -----------------------------Constructors----------------------------
 	public Game() {
-		this.combination_size = 4;
-		this.nb_try = 20;
+		this.combination_size = 5;
+		this.nb_try = 30;
 		this.combination = randomCombination();
 		this.AIcombination = randomCombination();
 		logger.info("Default game built. " + nb_try + " try.");
@@ -88,6 +88,13 @@ public abstract class Game {
 		}
 		System.out.print("]");
 	}
+	
+	public static int[] copyArray(int[] copy, int array[] ) {
+		for(int l = 0; l<array.length ; l++) {
+			copy[l] = array[l];
+		}
+		return copy;
+	}
 
 	public int[] fillArray(int[] Array, int fill) {
 		for (int k = 0; k < Array.length; k++) {
@@ -141,8 +148,20 @@ public abstract class Game {
 		return input;
 	}
 
-	protected void response() {
+	protected void response(int[] proposition_tab) {
 		System.out.print(" -> Response : ");
+	}
+	
+	public void challenger() {
+		int temp[] = new int[this.combination_size];
+		while (nb_try > 0 && !(Arrays.equals(this.combination, temp))) {
+			System.out.print("Proposition : ");
+			temp = testInput();
+			response(temp);
+			nb_try--;
+			System.out.println();
+		}
+		endGame(temp, "You");
 	}
 
 	protected void endGame(int[] final_combi, String name) {

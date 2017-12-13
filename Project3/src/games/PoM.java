@@ -17,7 +17,7 @@ public class PoM extends Game {
 
 	// -------------------------------Methods-------------------------------
 	public void response(int proposition_tab[]) {
-		super.response();
+		super.response(proposition_tab);
 		for (int k = 0; k < combination_size; k++) {
 			if (proposition_tab[k] < this.combination[k]) {
 				System.out.print("+");
@@ -29,18 +29,6 @@ public class PoM extends Game {
 		}
 	}
 
-	public void challenger() {
-		int temp[] = new int[this.combination_size];
-		while (nb_try > 0 && !(Arrays.equals(this.combination, temp))) {
-			System.out.print("Proposition : ");
-			temp = testInput();
-			response(temp);
-			nb_try--;
-			System.out.println();
-		}
-		endGame(temp, "You");
-		
-	}
 
 	private int[][] AI() {// using dichotomy method
 		int[][] memory = new int[nb_try][combination_size];
@@ -94,6 +82,7 @@ public class PoM extends Game {
 
 	public void duel() {
 		boolean YourTurn = true;
+		boolean FirstTurn = true;
 		int[] temp = null;
 		int i = 0;
 		System.out.println("Choose the combination [" + this.combination_size + "] the AI has to find : ");
@@ -110,9 +99,14 @@ public class PoM extends Game {
 				YourTurn = false;
 			} else {
 				System.out.print("------------------- AI propose : ");
+				if(FirstTurn) {// to print the first step of the AI
+					FirstTurn = false;
+				}
+				else {
+					i++;
+				}
 				printTab(memory[i]);
 				System.out.println();
-				i++;
 				nb_try--;
 				YourTurn = true;
 			}

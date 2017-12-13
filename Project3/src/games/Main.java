@@ -10,6 +10,7 @@ public class Main {
 
 	private static Logger logger = LogManager.getLogger();
 
+	// -------------------------------Methods-------------------------------
 	public static void play(Game game) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Choose your game : \n1 - Plus or Minus\n2 - Mastermind\n");
@@ -25,7 +26,8 @@ public class Main {
 			choice = sc.nextInt();
 
 			if (choice == 1) {
-				logger.info("Challenger mode chosen.");
+				logger.info("Challenger mode chosen. ");
+				Game.printTab(game.combination);
 				System.out.println("You have to find the secret combination. Good luck ! \n");
 				((PoM) game).challenger();
 			} else if (choice == 2) {
@@ -52,17 +54,19 @@ public class Main {
 			choice = sc.nextInt();
 
 			if (choice == 1) {
-				logger.info("Challenger mode chosen.");
-				System.out.println("You have to find the secret combination. Good luck ! \n");
-				((PoM) game).challenger();
+				logger.info("Challenger mode chosen. ");
+				Game.printTab(game.combination);
+				System.out.println("\nYou have to find the secret combination. Good luck ! \n");
+				((Mastermind) game).challenger();
 			} else if (choice == 2) {
-				logger.info("Defender mode chosen.");
+				logger.info("Defender mode chosen. ");
 				System.out.println("AI has to find your combination ! \n");
-				((PoM) game).defender();
+				((Mastermind) game).defender();
 			} else if (choice == 3) {
-				logger.info("Duel mode chosen.");
+				logger.info("Duel mode chosen. ");
+				Game.printTab(game.combination);
 				System.out.println("Both you and AI will try to find each combination. The first will win. \n");
-				((PoM) game).duel();
+				((Mastermind) game).duel();
 			}
 
 			play(game);
@@ -73,6 +77,11 @@ public class Main {
 		}
 
 		sc.close();
+	}
+	
+	public static void mode() {
+		Scanner sc = new Scanner(System.in);
+		int choice = sc.nextInt();
 	}
 
 	// ----------------------------------MAIN-------------------------------
@@ -94,10 +103,13 @@ public class Main {
 
 		} finally {
 			// Launch the game with properties or default properties
-			Game game = new PoM(combination_size, nb_try);
+			Game game = new Mastermind(combination_size, nb_try,8);
 			play(game);
 		}
 
+		
+		
+		
 	}
 
 }
