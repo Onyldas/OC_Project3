@@ -2,26 +2,42 @@ package games;
 
 import java.util.Arrays;
 
+/**
+ * <h4>Mastermind class</h4>
+ * <p>
+ * The second combination Game 
+ * Here, the attribute colors represent the number of colors that there might be in the combination.
+ * </p>
+ * @author Guillaume
+ * @version 4.7
+ */
 public class Mastermind extends Game {
 
 	// --------------------------Instance Attributes------------------------
 	private int colors;
 
 	// -----------------------------Constructors----------------------------
-	public Mastermind() {
-		super();
-		colors = 6;
-	}
-
+	/**
+	 * Construction of the Mastermind game 
+	 * It needs three parameters :
+	 * @param combination_size
+	 * @param nb_try
+	 * @param colors
+	 * Here we use super method
+	 * The combination/AIcombination are created with random method.
+	 * @see Game#randomCombination
+	 * @see Game#Game(int, int)
+	 */
 	public Mastermind(int combination_size, int nb_try, int colors) {
 		super(combination_size, nb_try);
 		this.colors = colors;
 	}
-	// -------------------------------Getters-------------------------------
-
-	// -------------------------------Setters-------------------------------
 
 	// -------------------------------Methods-------------------------------
+	/**
+	 * @param select
+	 * @return the combination of the AI or the user
+	 */
 	private int[] selectPlayer(int select) {
 		if (select == 0) {
 			return this.combination;
@@ -29,7 +45,13 @@ public class Mastermind extends Game {
 			return this.AIcombination;
 		}
 	}
-
+	
+	/**
+	 * Compare to arrays and return the number of
+	 * @param tryy
+	 * @param select
+	 * @return
+	 */
 	private int goodColor(int tryy[], int select) {
 		int[] selectedCombination = selectPlayer(select);
 		int color = 0;
@@ -83,7 +105,7 @@ public class Mastermind extends Game {
 			fillArray(memory[0], color);
 			nb_color = goodColor(memory[0], 1);
 		}
-		while (i < this.colors + 1 && nb_color != combination_size && nb_try > 0) {
+		while (i < this.colors + 1 && nb_color != combination_size && i < nb_try+2) {
 			color++;
 			nb_color = goodColor(memory[i - 1], 1);
 			for (int j = 0; j < nb_color; j++) {
@@ -93,7 +115,6 @@ public class Mastermind extends Game {
 				memory[i][j] = color;
 			}
 			i++;
-			nb_try--;
 		}
 		fillArray(memory[i], -1);
 		return memory;
@@ -109,7 +130,7 @@ public class Mastermind extends Game {
 		return i;
 	}
 
-	public int[][] findPosition() {
+	protected int[][] AI() {
 		int memory[][] = findColor();
 		int i = findLastLine(memory);
 		int j = 0;
@@ -119,7 +140,7 @@ public class Mastermind extends Game {
 		copyArray(tempCombination, memory[i-1]);
 		System.out.println(i);
 		int k = 1;
-		while (nb_try > 0 && !Arrays.equals(AIcombination, memory[i-1])) {
+		while (i < nb_try+2 && !Arrays.equals(AIcombination, memory[i-1])) {
 			if (tempCombination[k] == -1) {
 				k++;
 			} else {
@@ -144,64 +165,5 @@ public class Mastermind extends Game {
 		return memory;
 	}
 	
-	public void defender() {
-
-		System.out.println("Choose the combination [" + this.combination_size + "] the AI has to find : ");
-		int[] AICombi = testInput();
-		SetAICombination(AICombi);
-		int[][] memory = findPosition();
-		int k = -1;
-		do {
-			k++;
-			printTab(memory[k]);
-			System.out.println();
-		} while (!(Arrays.equals(this.AIcombination, memory[k])) && (k < memory.length));
-		endGame(memory[k], "AI");
-}
-	
-	public void duel() {
-		boolean YourTurn = true;
-		boolean FirstTurn = true;
-		int[] temp = null;
-		int i = 0;
-		System.out.println("Choose the combination [" + this.combination_size + "] the AI has to find : ");
-		int[] AICombi = testInput();
-		SetAICombination(AICombi);
-		int[][] memory = findPosition();
-
-		while ((i < memory.length) && !(Arrays.equals(this.combination, temp)) && !(Arrays.equals(this.AIcombination, memory[i]))) {
-			if (YourTurn) {
-				System.out.print("Proposition : ");
-				temp = testInput();
-				response(temp);
-				System.out.println();
-				YourTurn = false;
-			} else {
-				System.out.print("------------------- AI propose : ");
-				if(FirstTurn) {// to print the first step of the AI
-					FirstTurn = false;
-				}
-				else {
-					i++;
-				}
-				printTab(memory[i]);
-				System.out.println();
-				nb_try--;
-				YourTurn = true;
-			}
-		}
-		endGame(memory[i], "AI");
-		endGame(temp, "You");
-	}
-	
-//	public void test() {
-//		int combi[] = { 3, 6, 3, 1, 2 };
-//		SetAICombination(combi);
-//		int[][] memory = findPosition();
-//		for (int line[] : memory) {
-//			printTab(line);
-//			System.out.println();
-//		}
-//	}
 
 }

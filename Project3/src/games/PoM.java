@@ -1,21 +1,38 @@
 package games;
 
-import java.util.Arrays;
 
+/**
+ * <h4>Plus or Minus class</h4>
+ * <p>The first combination Game </p>
+ * @author Guillaume
+ * @version 4.7
+ */
 public class PoM extends Game {
 
-	// --------------------------Instance Attributes------------------------
-
 	// -----------------------------Constructors----------------------------
-	public PoM() {
-		super();
-	}
-
+	
+	/**
+	 * Construction of the PoM game 
+	 * It needs two parameters :
+	 * 
+	 * @param combination_size
+	 * @param nb_try
+	 * 
+	 * Here we use super method
+	 * The combination/AIcombination are created with random method.
+	 * @see Game#randomCombination
+	 * @see Game#Game(int, int)
+	 */
 	public PoM(int combination_size, int nb_try) {
 		super(combination_size, nb_try);
 	}
 
 	// -------------------------------Methods-------------------------------
+	
+	/**
+	 * Here the response method print + or - just below the input of the player 
+	 * to indicate if he has to put a higher or smaller number
+	 */
 	public void response(int proposition_tab[]) {
 		super.response(proposition_tab);
 		for (int k = 0; k < combination_size; k++) {
@@ -29,16 +46,24 @@ public class PoM extends Game {
 		}
 	}
 
-
-	private int[][] AI() {// using dichotomy method
+	
+	/**
+	 * The script the AI uses to find the combination
+	 * It uses the dichotomy method and begins with 5555.. combination
+	 * If it's higher to 5 the AI will try 7 ((5 + 9) /2) etc..
+	 * It put every try (which are arrays int[]) of the AI in a big array called memory (which is int[][])
+	 * A line of memory correspond to a try of the AI
+	 * @return memory
+	 */
+	protected int[][] AI() {
 		int[][] memory = new int[nb_try][combination_size];
-		for (int k = 0; k < combination_size; k++) {// IA begin with 5555... combination
-			memory[0][k] = 5;
-		}
+		memory[0] = fillArray(memory[0], 5);
+		
 		for (int i = 1; i < nb_try; i++) {
 			for (int j = 0; j < combination_size; j++) {
 				int inf = 1;
 				int sup = 9;
+				
 				if (memory[i - 1][j] < AIcombination[j]) {
 					inf = memory[i - 1][j];
 					if (sup - inf == 1) {
@@ -46,7 +71,9 @@ public class PoM extends Game {
 					} else {
 						memory[i][j] = (sup + inf) / 2;
 					}
-				} else if (memory[i - 1][j] > AIcombination[j]) {
+				} 
+				
+				else if (memory[i - 1][j] > AIcombination[j]) {
 					sup = memory[i - 1][j];
 					if (i > 1 && memory[i - 2][j] < AIcombination[j]) {
 						inf = memory[i - 2][j];
@@ -56,63 +83,13 @@ public class PoM extends Game {
 					} else {
 						memory[i][j] = (sup + inf) / 2;
 					}
-				} else {
+				} 
+				
+				else {// if it's a good number we don't touch it
 					memory[i][j] = memory[i - 1][j];
 				}
 			}
 		}
 		return memory;
 	}
-
-	public void defender() {
-
-			System.out.println("Choose the combination [" + this.combination_size + "] the AI has to find : ");
-			int[] AICombi = testInput();
-			SetAICombination(AICombi);
-			int[][] memory = AI();
-			int k = -1;
-			do {
-				k++;
-				printTab(memory[k]);
-				System.out.println();
-				nb_try--;
-			} while (!(Arrays.equals(this.AIcombination, memory[k])) && (nb_try > 0));
-			endGame(memory[k], "AI");
-	}
-
-	public void duel() {
-		boolean YourTurn = true;
-		boolean FirstTurn = true;
-		int[] temp = null;
-		int i = 0;
-		System.out.println("Choose the combination [" + this.combination_size + "] the AI has to find : ");
-		int[] AICombi = testInput();
-		SetAICombination(AICombi);
-		int[][] memory = AI();
-
-		while ((nb_try > 0) && !(Arrays.equals(this.combination, temp)) && !(Arrays.equals(this.AIcombination, memory[i]))) {
-			if (YourTurn) {
-				System.out.print("Proposition : ");
-				temp = testInput();
-				response(temp);
-				System.out.println();
-				YourTurn = false;
-			} else {
-				System.out.print("------------------- AI propose : ");
-				if(FirstTurn) {// to print the first step of the AI
-					FirstTurn = false;
-				}
-				else {
-					i++;
-				}
-				printTab(memory[i]);
-				System.out.println();
-				nb_try--;
-				YourTurn = true;
-			}
-		}
-		endGame(memory[i], "AI");
-		endGame(temp, "You");
-	}
-
 }
