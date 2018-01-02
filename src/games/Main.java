@@ -6,13 +6,30 @@ import java.util.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * <h4>Main class</h4>
+ * <p>
+ * In this class we can play the games written in the others classes.
+ * </p>
+ * @author Guillaume FRANCOIS
+ * @version 4.7
+ */
 public class Main {
 
 	private static Logger logger = LogManager.getLogger();
 	static Scanner sc = new Scanner(System.in);
 
 	// -------------------------------Methods-------------------------------
-	public static void play(int combination_size, int nb_try, int colors) {
+
+	/**
+	 * This method take the parameters of the combination games :
+	 * @param combination_size
+	 * @param nb_try
+	 * @param colors
+	 * Then we can chose between the two games
+	 * It call the @see Main{@link Main#mode(Game, boolean)} and the @see Main{@link #replay()} method
+	 */
+	public static void play(int combination_size, int nb_try, int colors, boolean devMod) {
 		boolean replay = true;
 
 		do {
@@ -26,7 +43,7 @@ public class Main {
 								+ "If the script shows a + below your number you have to enter a number higher than your previous one. \n"
 								+ "Easy isn't it ?\n");
 
-				mode(game);
+				mode(game, devMod);
 			} else if (choice == 2) {
 				logger.info("Mastermind game chosen.\n");
 				Mastermind game = new Mastermind(combination_size, nb_try, colors);
@@ -35,23 +52,38 @@ public class Main {
 						+ "code. The winner is the player who solves his opponent's secret code with fewer\r\n"
 						+ "guesses\n");
 
-				mode(game);
+				mode(game, devMod);
 			}
 
 			replay = replay();
 
-		
+
 		} while (replay);
 		sc.close();
 	}
 
-	public static void mode(Game game) {
-		System.out.println("\nChoose your mode : \n1 - Challenger\n2 - Defender\n3 - Duel");
+
+	/**
+	 * This method called by the @see Main{@link Main#play(int, int, int, boolean)} method
+	 * propose the choose between the three mods
+	 *	<ul>
+	 * <li>@see Game#Challenger()</li>
+	 * <li>@see Game#Defender()</li>
+	 * <li>@see Game#Duel()</li>
+	 * </ul>
+	 * @param game
+	 */
+	public static void mode(Game game, boolean devMod) {
+		System.out.println("\nChoose your mod : \n1 - Challenger\n2 - Defender\n3 - Duel");
 		int choice = sc.nextInt();
 
 		if (choice == 1) {
 			logger.info("Challenger mode chosen. ");
-			Game.printTab(game.combination);
+			if(devMod){
+				System.out.println("\nDev mod activated :");
+				Game.printTab(game.combination);
+				System.out.println();
+			}
 			System.out.println("You have to find the secret combination. Good luck ! \n");
 			game.challenger();
 		} else if (choice == 2) {
@@ -59,14 +91,24 @@ public class Main {
 			System.out.println("AI has to find your combination ! \n");
 			game.defender();
 		} else if (choice == 3) {
+			if(devMod){
+				System.out.println("\nDev mod activated :");
+				Game.printTab(game.combination);
+				System.out.println();
+			}
 			logger.info("Duel mode chosen.");
 			System.out.println("Both you and AI will try to find each combination. The first will win. \n");
 			game.duel();
 		}
 	}
 
+
+	/**
+	 * While the boolean is true the player replay the game.
+	 * @return boolean replay
+	 */
 	public static boolean replay() {
-		boolean replay = false;
+		boolean replay;
 		System.out.println("\nDo you want to replay ? \n1 - Yes\n2 - No");
 		int choice = sc.nextInt();
 
@@ -78,8 +120,14 @@ public class Main {
 
 		return replay;
 	}
-	
-	public static boolean enableModeDev(String [] args) {
+
+
+	/**
+	 * If the user play the game in programming mod, this method will return true
+	 * @param args
+	 * @return boolean
+	 */
+	public static boolean enableDevMod(String [] args) {
 		if(args.length == 1 && args[0].equals("-d")) {
 			return true;
 		}
@@ -89,8 +137,8 @@ public class Main {
 	}
 	// ----------------------------------MAIN-------------------------------
 	public static void main(String[] args) {
-		
-		boolean devMode = enableModeDev(args);
+
+		boolean devMod = enableDevMod(args);
 		int combination_size = 4;
 		int nb_try = 10;
 		int colors = 8;
@@ -107,11 +155,11 @@ public class Main {
 			fis.close();
 
 		} catch (Exception e) {
-			logger.error(e);
+			logger.error("No file find or bad inputs (it must be integers)");
 
 		} finally {
 			// Launch the game with properties or default properties
-			play(combination_size, nb_try, colors);
+			play(combination_size, nb_try, colors,devMod);
 		}
 
 	}

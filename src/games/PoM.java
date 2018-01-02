@@ -4,20 +4,20 @@ package games;
 /**
  * <h4>Plus or Minus class</h4>
  * <p>The first combination Game </p>
- * @author Guillaume
+ * @author Guillaume FRANCOIS
  * @version 4.7
  */
 public class PoM extends Game {
 
 	// -----------------------------Constructors----------------------------
-	
+
 	/**
 	 * Construction of the PoM game 
 	 * It needs two parameters :
-	 * 
+	 *
 	 * @param combination_size
 	 * @param nb_try
-	 * 
+	 *
 	 * Here we use super method
 	 * The combination/AIcombination are created with random method.
 	 * @see Game#randomCombination
@@ -28,7 +28,7 @@ public class PoM extends Game {
 	}
 
 	// -------------------------------Methods-------------------------------
-	
+
 	/**
 	 * Here the response method print + or - just below the input of the player 
 	 * to indicate if he has to put a higher or smaller number
@@ -46,7 +46,7 @@ public class PoM extends Game {
 		}
 	}
 
-	
+
 	/**
 	 * The script the AI uses to find the combination
 	 * It uses the dichotomy method and begins with 5555.. combination
@@ -58,12 +58,12 @@ public class PoM extends Game {
 	protected int[][] AI() {
 		int[][] memory = new int[nb_try][combination_size];
 		memory[0] = fillArray(memory[0], 5);
-		
+
 		for (int i = 1; i < nb_try; i++) {
 			for (int j = 0; j < combination_size; j++) {
 				int inf = 1;
 				int sup = 9;
-				
+
 				if (memory[i - 1][j] < AIcombination[j]) {
 					inf = memory[i - 1][j];
 					if (sup - inf == 1) {
@@ -71,8 +71,8 @@ public class PoM extends Game {
 					} else {
 						memory[i][j] = (sup + inf) / 2;
 					}
-				} 
-				
+				}
+
 				else if (memory[i - 1][j] > AIcombination[j]) {
 					sup = memory[i - 1][j];
 					if (i > 1 && memory[i - 2][j] < AIcombination[j]) {
@@ -83,8 +83,8 @@ public class PoM extends Game {
 					} else {
 						memory[i][j] = (sup + inf) / 2;
 					}
-				} 
-				
+				}
+
 				else {// if it's a good number we don't touch it
 					memory[i][j] = memory[i - 1][j];
 				}

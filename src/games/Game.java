@@ -22,7 +22,7 @@ import org.apache.logging.log4j.Logger;
  * <p>
  * Plus, you can chose the mode of the game.
  * </p>
- * 
+ *
  * @author Guillaume FRANCOIS
  * @version 4.7
  *
@@ -41,13 +41,13 @@ public abstract class Game {
 	// -----------------------------Constructors----------------------------
 	/**
 	 * Construction of the game It needs two parameters :
-	 * 
+	 *
 	 * @param combination_size
 	 * @param nb_try
-	 * 
+	 *
 	 * The combination/AIcombination are created with random method.
 	 * @see Game#randomCombination
-	 * 
+	 *
 	 */
 	public Game(int combination_size, int nb_try) {
 		this.combination_size = combination_size;
@@ -56,8 +56,8 @@ public abstract class Game {
 		this.AIcombination = randomCombination();
 		logger.info("Game built. " + nb_try + " try.");
 	}
-	
-	
+
+
 	/**
 	 * Setter for AIcombination attribute.
 	 * @param combi
@@ -73,22 +73,22 @@ public abstract class Game {
 	 */
 	public int[] randomCombination() {
 		int combination[] = new int[combination_size];
-		
+
 		for (int k = 0; k < combination_size; k++) {
 			combination[k] = (int) (Math.random() * (double) (10 - 1)) + 1;
 		}
-		
+
 		return combination;
 	}
-	
-	
+
+
 	/**
 	 * Print an array.
 	 * @param tab
 	 */
 	public static void printTab(int[] tab) {
 		System.out.print("[");
-		
+
 		for (int i = 0; i < tab.length; i++) {
 			System.out.print(tab[i]);
 			if (i != tab.length - 1) {
@@ -97,8 +97,8 @@ public abstract class Game {
 		}
 		System.out.print("]");
 	}
-	
-	
+
+
 	/**
 	 * Copy an array in a new array without link between them.
 	 * @param copy
@@ -111,7 +111,7 @@ public abstract class Game {
 		}
 		return copy;
 	}
-	
+
 
 	/**
 	 * Every cell of the array will be fill by the integer "fill".
@@ -125,8 +125,8 @@ public abstract class Game {
 		}
 		return Array;
 	}
-	
-	
+
+
 	/**
 	 * This method take the input of the user,
 	 * it test if the input is correct (integers, good length @see {@link Game#combination_size}),
@@ -155,7 +155,7 @@ public abstract class Game {
 		}
 
 	}
-	
+
 
 	/**
 	 * It test if the input of the user return an exception.
@@ -176,11 +176,11 @@ public abstract class Game {
 				logger.error("\nIncorrect input ! Try again :\n");
 			}
 		} while (notCorrect);
-		
+
 		return input;
 	}
 
-	
+
 	/**
 	 * The response to the user input.
 	 * It depends of the chosen game.
@@ -189,8 +189,8 @@ public abstract class Game {
 	protected void response(int[] proposition_tab) {
 		System.out.print(" -> Response : ");
 	}
-	
-	
+
+
 	/**
 	 * The first mode :
 	 * the user has to find the combination with a limited number of try.
@@ -210,8 +210,8 @@ public abstract class Game {
 
 		endGame(temp, "You");
 	}
-	
-	
+
+
 	/**
 	 * The script the AI will use to find its combination.
 	 * It depends of the chosen game.
@@ -220,12 +220,12 @@ public abstract class Game {
 	protected int[][] AI() {
 		return null;
 	}
-	
-	
+
+
 	/**
 	 * The second mode :
 	 * the user give a combination the AI will try to find with its script
-	 * @see Game#AI() 
+	 * @see Game#AI()
 	 * It ends when there's no more try or when the AI find the good combination.
 	 * @see Game#endGame(int[], String)
 	 */
@@ -247,11 +247,11 @@ public abstract class Game {
 		endGame(memory[k], "AI");
 	}
 
-	
+
 	/**
 	 * The third mode :
 	 * the user give a combination the AI will try to find with its script
-	 * @see Game#AI() 
+	 * @see Game#AI()
 	 * the user has to find the combination with a limited number of try
 	 * they played round by round.
 	 * It ends when there's no more try or when the AI or the player find their good combination.
@@ -291,8 +291,8 @@ public abstract class Game {
 		endGame(memory[i], "AI");
 		endGame(temp, "You");
 	}
-	
-	
+
+
 	/**
 	 * Test if this is the AI or the user who's concerned
 	 * Then it test if he/it wins or loses.
